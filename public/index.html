@@ -4,6 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
 
+  <style>
+  	.cntr { display: flex; justify-content: space-between; }
+  	canvas { background: #eee; display: block; margin: 0 auto; }
+
+  </style>
+
+
   <script src="https://cdn.jsdelivr.net/npm/eruda@2.4.1/eruda.min.js"></script>
   <script>eruda.init();</script>
 
@@ -13,7 +20,15 @@
 <body>
 <!--<button onclick="requestPermission()">このエリアを押して モーションの利用を許可してください (iOS 13+) </button>-->
 
-<button id="request_permission">ぼたん</button>
+<button id="request_permission">📲</button>
+
+<div class="cntr">
+  <div id="result_acc"><br><br><br><br></div>
+  <br />
+  <div id="result_gyro"></div>
+</div>
+<canvas id="myCanvas" width="320" height="480"></canvas>
+
 </body>
 </html>
  
