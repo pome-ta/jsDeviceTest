@@ -1,8 +1,9 @@
+import sys
 import pathlib
 import ui
-# todo: `-` あると、減算判断になるので特殊な読み込み
-wkwebview = __import__('pythonista-webview').wkwebview
 
+sys.path.append(str(pathlib.Path.cwd()) + '/pythonista-webview')
+import wkwebview
 
 uri = pathlib.Path('./public/index.html')
 
