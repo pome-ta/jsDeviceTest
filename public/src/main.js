@@ -1,33 +1,79 @@
 'use strict';
 
-	// ジャイロセンサーが有効か？
-if(window.DeviceOrientationEvent){
-    // ★iOS13向け: ユーザーにアクセスの許可を求める関数があるか？
-    if(DeviceOrientationEvent.requestPermission){
-        var sensor_contents= document.getElementById("sensor_contents");
-        // id="sensor_contents" な要素がクリックされたら
-        sensor_contents.addEventListener("click", function(){
-            // ★ジャイロセンサーのアクセス許可をリクエストする
-            DeviceOrientationEvent.requestPermission().then(function(response){
-                // リクエストが許可されたら
-                if(response === "granted"){
-                    // deviceorientationが有効化される
-                }
-            }).catch(function(e){
-                console.log(e);
-            });
-        });
-    // iOS13以外
-    }else{
-        // 何もしない
+/*
+DeviceMotionEvent.requestPermission()
+.then(response => {
+  if (response == 'granted') {
+    window.addEventListener('devicemotion', (e) => {
+      // do something with e
+      console.log(e);
+    })
+  }
+})
+.catch(console.error)
+*/
+
+/*
+
+DeviceOrientationEvent.requestPermission()
+.then(response => {
+  if (response == 'granted') {
+    window.addEventListener('deviceorientation', (e) => {
+      // do something with e
+      console.log(e);
+    })
+  }
+})
+.catch(console.error)
+
+*/
+
+/*
+
+if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+      // iOS 13+
+      popupOpen("requestPermissionPopup");
+    } else {
+      // non iOS 13+
+      window.addEventListener("deviceorientation", (e) => {
+        console.log('non iOS 13+');
+        console.log(e);
+      });
     }
+
+
+
+  // for ios13
+  requestPermission = ()=> {
+    DeviceOrientationEvent.requestPermission().then(response => {
+      if (response === 'granted') {
+        window.addEventListener("deviceorientation", (e) => {
+          console.log('for ios13');
+          console.log(e);
+        });
+      }
+    }).catch(console.error);
+  };
+
+*/
+
+document.getElementById("request_permission").addEventListener("click", function(){
+if (
+DeviceMotionEvent &&
+DeviceMotionEvent.requestPermission &&
+typeof DeviceMotionEvent.requestPermission === 'function'
+) {
+DeviceMotionEvent.requestPermission();
 }
- 
-// 従来の処理
-// deviceorientationだったりdevicemotionだったりする
-function deviceorientationHandler(){
-    // ※※※※※※※※※※※※※※※※
-    //   ここに従来の処理を書いていく
-    // ※※※※※※※※※※※※※※※※
+if (
+DeviceOrientationEvent &&
+DeviceOrientationEvent.requestPermission &&
+typeof DeviceOrientationEvent.requestPermission === 'function'
+) {
+DeviceOrientationEvent.requestPermission();
 }
-window.addEventListener("deviceorientation", deviceorientationHandler);
+})
+
+
+
+
