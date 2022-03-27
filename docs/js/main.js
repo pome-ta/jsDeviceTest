@@ -16,8 +16,32 @@ document.getElementById("request_permission").addEventListener("click", () => {
   }
 })
 
+if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
+  console.log("Let's get this party started")
+}
 
-
+const video = document.getElementById("video");
+navigator.mediaDevices.getUserMedia({
+  video: {
+    width: {
+      min: 1280,
+    },
+    height: {
+      min: 720,
+    },
+    facingMode: {
+      exact: 'environment'
+    }
+  },
+  audio: false,
+}).then(stream => {
+  console.log(stream);
+    //video.srcObject = stream;
+    //video.play();
+}).catch(e => {
+  console.log('えらー');
+  console.log(e);
+});
 
 window.addEventListener( "devicemotion", ( event ) => {
   const x = event.accelerationIncludingGravity.x;

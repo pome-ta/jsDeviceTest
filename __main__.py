@@ -14,6 +14,7 @@ class View(ui.View):
     self.wv = wkwebview.WKWebView()
     self.wv.load_url(str(uri), True)
     self.wv.flex = 'WH'
+    self.wv.reload()
     self.add_subview(self.wv)
 
   def will_close(self):
