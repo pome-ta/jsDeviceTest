@@ -1,5 +1,7 @@
 'use strict';
 
+window.navigator.vibrate(200);
+
 /**
  * ジャイロ着火のおまじない
  * https://bagelee.com/webar-vr/ios13-webar-webvr/
